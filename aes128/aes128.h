@@ -22,14 +22,13 @@ public:
 
 	vector<vector<int>> encrypt(vector<vector<int>>);
 
+	bool encrypt(string);
+
 	void decrypt(vector<int>&);
 
 	vector<vector<int>> decrypt(vector<vector<int>>);
 
-	bool encrypt(string);
-
 	bool decrypt(string);
-
 
 };
 

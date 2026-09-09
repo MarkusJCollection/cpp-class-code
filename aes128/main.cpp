@@ -7,7 +7,7 @@
 using namespace std;
 
 string directory_path = ""; // Leave empty for relative to project.
-vector<int> key = 
+vector<int> key = // Initialized as a 16 byte array of zeroes.
 { 
 	0,0,0,0,
 	0,0,0,0,
@@ -18,6 +18,8 @@ vector<int> key =
 static AES aes(key);
 
 void fullShowcase() {
+		// This function is used for the full showcase of our AES implementation.
+
 	const string KEY_STRING = "MARKUS_JESSE_CPP"; //String must be 16 bytes
 	key = stringToBlock(KEY_STRING);
 	aes.setKey(key);
@@ -35,7 +37,7 @@ void fullShowcase() {
 void encryptFile(string file_name) {
 	aes.encrypt(directory_path + file_name);
 
-	cout << "AES key used: \n\t[";
+	cout << "AES Key used: \n\t[";
 	for (int byte : key) {
 		cout << byte << " ";
 	}
@@ -47,7 +49,7 @@ void encryptFile(string file_name) {
 void decryptFile(string file_name) {
 	aes.decrypt(directory_path + file_name);
 
-	cout << "AES key used: \n\t[";
+	cout << "AES Key used: \n\t[";
 	for (int byte : key) {
 		cout << byte << " ";
 	}
@@ -63,33 +65,37 @@ void consoleQuestions() {
 		choice = askOption();
 
 		switch (choice) {
-		case 0:
-			continuing = false;
-			break;
-		case 1:
-			directory_path = askDirectory();
-			cout << "Directory set as '" << directory_path << "'.\n";
-			break;
-		case 2:
-			key = stringToBlock(askKey());
-			aes.setKey(key);
-			cout << "Key set as [ ";
-			for (int byte : key) {
-				cout << byte << " ";
-			}
-			cout << "].\n";
-			break;
-		case 3:
-			fullShowcase();
-		case 4:
-			encryptFile(askFileName());
-			break;
-		case 5:
-			decryptFile(askFileName());
-			break;
-		default:
-			cout << "Invalid option chosen, please pick another.\n\n";
-			break;
+			case 0:
+				cout << "Invalid option chosen, please pick another.\n\n";
+				break;
+			case 1:
+				directory_path = askDirectory();
+				cout << "Directory set as '" << directory_path << "'.\n";
+				break;
+			case 2:
+				key = stringToBlock(askKey());
+				aes.setKey(key);
+				cout << "Key set as [ ";
+				for (int byte : key) {
+					cout << byte << " ";
+				}
+				cout << "].\n";
+				break;
+			case 3:
+				fullShowcase();
+				break;
+			case 4:
+				encryptFile(askFileName());
+				break;
+			case 5:
+				decryptFile(askFileName());
+				break;
+			case 6:
+				continuing = false;
+				break;
+			default:
+				cout << "Invalid option chosen, please pick another.\n\n";
+				break;
 		}
 
 	}
@@ -97,8 +103,6 @@ void consoleQuestions() {
 }
 
 int main() {
-
 	consoleQuestions();
-
 	return 0;
 }

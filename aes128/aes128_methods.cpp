@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+using namespace std;
+
 int countBits(int number) {
     //Our function for counting the number of bits it takes to represent a number.
     int total = 0;
@@ -15,6 +17,7 @@ int countBits(int number) {
 }
 
 int aes_mod(int byte) {
+        // Takes an input and modulus' it compared to our irreducible polynomial 0x11B.
     int byte_diff;
     do {
         byte_diff = countBits(byte) - 8;
@@ -26,6 +29,7 @@ int aes_mod(int byte) {
 }
 
 void circularShiftL(int& byte) {
+        // Left circular shift of our byte.
     int sig_bit;
     if ((byte & 0x80) > 0) {
         sig_bit = 1;
@@ -40,6 +44,8 @@ void circularShiftL(int& byte) {
 }
 
 int circularShiftL(int byte, int amount) {
+        // Left circular shift of our byte by a given amount.
+
     for (int i = 0; i < amount; i++) {
         circularShiftL(byte);
     }
@@ -47,6 +53,8 @@ int circularShiftL(int byte, int amount) {
 }
 
 int polyMultiply(int byte_one, int byte_two) {
+        // Multiply two polynomials in GF(2^m) mod 2.
+
     int result = 0;
     while (byte_two > 0) {
         byte_one <<= byte_two & 1;
@@ -59,6 +67,8 @@ int polyMultiply(int byte_one, int byte_two) {
 }
 
 int polyMultiply(int byte_one, int byte_two, int ip) {
+        // Multiply two polynomials with a modulus of an irreducible polynomial ip.
+
     int result = 0;
     while (byte_two > 0) {
         if (byte_two & 1) {
@@ -73,16 +83,17 @@ int polyMultiply(int byte_one, int byte_two, int ip) {
 
 
 int eeaGF(int poly_one, int poly_two) {
-    //Extended Euclidean Aglorithm used for finding multiplicative inverse of a polynomial for a Galois Field.
-    std::vector<int> s;
+    // Extended Euclidean Aglorithm used for finding multiplicative inverse of a polynomial for a Galois Field.
+    //Currently not used.
+    vector<int> s;
     s.push_back(1);
     s.push_back(0);
 
-    std::vector<int> t;
+    vector<int> t;
     t.push_back(0);
     t.push_back(1);
 
-    std::vector<int> r;
+    vector<int> r;
     r.push_back(poly_one);
     r.push_back(poly_two);
 
@@ -117,8 +128,8 @@ int inverse(int byte) {
     return eeaGF(irreducible_poly, byte);
 }
 
-std::vector<int> stringToBlock(std::string input_string) {
-    std::vector<int> vec;
+vector<int> stringToBlock(string input_string) {
+    vector<int> vec;
     int ctr = 0;
     for (int chr: input_string) {
         //Converting our string to proper form.

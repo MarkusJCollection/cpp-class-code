@@ -49,6 +49,17 @@ vector<vector<int>> AES::encrypt(vector<vector<int>> multiple_blocks) {
 	return encrypted_block;
 }
 
+bool AES::encrypt(string file_name) {
+	vector<vector<int>> original_output;
+	vector<vector<int>> encrypted_output;
+
+	original_output = fileToBlocks(file_name);
+
+	encrypted_output = encrypt(original_output);
+	blocksToFile("ENCRYPTED_" + file_name, encrypted_output);
+	return true;
+}
+
 void AES::decrypt(vector<int>& aes_block) {
 
 	keyAddition(aes_block, key_schedule, 10);
@@ -73,17 +84,6 @@ vector<vector<int>> AES::decrypt(vector<vector<int>> multiple_blocks) {
 		decrypted_block.push_back(aes_block);
 	}
 	return decrypted_block;
-}
-
-bool AES::encrypt(string file_name) {
-	vector<vector<int>> original_output;
-	vector<vector<int>> encrypted_output;
-
-	original_output = fileToBlocks(file_name);
-
-	encrypted_output = encrypt(original_output);
-	blocksToFile("ENCRYPTED_" + file_name, encrypted_output);
-	return true;
 }
 
 bool AES::decrypt(string file_name) {

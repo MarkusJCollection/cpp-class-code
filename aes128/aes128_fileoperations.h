@@ -11,6 +11,4 @@ vector<vector<int>> fileToBlocks(const string);
 
 void blocksToFile(const string, vector<vector<int>>);
 
-void test();
-
 #endif

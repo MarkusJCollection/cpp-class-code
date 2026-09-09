@@ -6,8 +6,8 @@
 
 using namespace std;
 
-
 void cleanBlock(vector<int>& char_block) {
+		// Removes trailing zeroes from a block.
 	if (char_block.size() == 0) {
 		return;
 	}
@@ -16,14 +16,16 @@ void cleanBlock(vector<int>& char_block) {
 	}
 }
 
-
-
 vector<vector<int>> fileToBlocks(const string file_name) {
 	ifstream in_stream;
 	vector<vector<int>> aes_blocks;
 	vector<int> block;
 
 	in_stream.open(file_name, ios::in | ios::binary);
+
+	if (in_stream.fail()) {
+		cout << "FILE DIDNT OPEN ABORT ABORT ABORT";
+	}
 
 	char inputch;
 	int counter = 0;
@@ -57,7 +59,6 @@ vector<vector<int>> fileToBlocks(const string file_name) {
 
 }
 
-
 void blocksToFile(const string file_name, vector<vector<int>> aes_blocks) {
 	cleanBlock(aes_blocks.back());
 	ofstream out_stream;
@@ -70,28 +71,4 @@ void blocksToFile(const string file_name, vector<vector<int>> aes_blocks) {
 		}
 	}
 	out_stream.close();
-}
-
-
-
-void test() {
-
-	ifstream in_stream;
-	in_stream.open("test.txt", ios::in | ios::binary);
-	
-	
-	char inputch;
-	int counter = 0;
-	vector<int> aes_block;
-	
-	while (in_stream.get(inputch)) {
-		cout << inputch;
-	}
-
-
-
-
-	in_stream.close();
-
-
 }
