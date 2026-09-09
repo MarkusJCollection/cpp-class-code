@@ -1,0 +1,8 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="aes128/aes128.vcxproj" Id="d8e3ff59-0848-4731-84e8-c6db28675914" />
+  <Project Path="eulers-method/eulers-method.vcxproj" Id="fefa9f21-ef74-48ca-8d03-cbbea6ec0290" />
+</Solution>
