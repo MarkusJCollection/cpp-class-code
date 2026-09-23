@@ -1,13 +1,6 @@
-OH WOWOWOWOWOWWO THIS
-IS A FIKE
+This is the showcase file for encryption and decryption.
 
-THAT I CAN DECRYPT
-
-AND IT
-WI
-LLL
-ALEAYS
+It works between multiple lines.
 
 
-
-LOOK THE SAME!
+Hello World!

@@ -6,7 +6,7 @@ int substitute(int);
 
 int substitute(int, bool);
 
-void createSbox();
+int createSbox();
 
 void byteSub(std::vector<int>&);
 

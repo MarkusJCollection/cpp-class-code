@@ -70,9 +70,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="test.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
     <Text Include="showcase.txt">
       <Filter>Resource Files</Filter>
     </Text>

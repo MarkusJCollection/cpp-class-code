@@ -28,7 +28,7 @@ int aes_mod(int byte) {
     return byte;
 }
 
-void circularShiftL(int& byte) {
+void circularShiftL(int byte) {
         // Left circular shift of our byte.
     int sig_bit;
     if ((byte & 0x80) > 0) {
@@ -81,6 +81,18 @@ int polyMultiply(int byte_one, int byte_two, int ip) {
     return result;
 }
 
+int polyDivide(int byte_one, int byte_two) {
+    int quotient;
+    int diff;
+
+    while (byte_one >= byte_two) {
+        diff = countBits(byte_one) - countBits(byte_two);
+        byte_one ^= byte_two << diff;
+        quotient ^= int(pow(2,diff)); 
+    }
+    return quotient;
+}
+
 
 int eeaGF(int poly_one, int poly_two) {
     // Extended Euclidean Aglorithm used for finding multiplicative inverse of a polynomial for a Galois Field.
@@ -99,21 +111,25 @@ int eeaGF(int poly_one, int poly_two) {
 
     int i = 1;
     int j;
+    int q;
 
 
     while (r[i] != 0) {
         i++;
-        j = countBits(r[i - 2]) - countBits(r[i - 1]);
+        j = countBits(r[i-2]) - countBits(r[i-1]);
+
 
         if (j >= 0) {
-            r.push_back(r[i - 2] ^ (r[i - 1] << j));
-            t.push_back(t[i - 2] ^ (t[i - 1] << j));
-            s.push_back(s[i - 2] ^ (s[i - 1] << j));
+            q = polyDivide(r[i - 2], r[i - 1]);
+            r.push_back(r[i - 2] ^ polyMultiply(r[i - 1], j));
+            t.push_back(t[i - 2] ^ polyMultiply(t[i - 1], j));
+            s.push_back(s[i - 2] ^ polyMultiply(s[i - 1], j));
         }
         else {
-            r.push_back(r[i - 1] ^ (r[i - 2] << -j));
-            t.push_back(t[i - 1] ^ (t[i - 2] << -j));
-            s.push_back(s[i - 1] ^ (s[i - 2] << -j));
+            q = polyDivide(r[i - 1], r[i - 2]);
+            r.push_back(r[i - 1] ^ polyMultiply(r[i - 1], j));
+            t.push_back(t[i - 1] ^ polyMultiply(t[i - 1], j));
+            s.push_back(s[i - 1] ^ polyMultiply(s[i - 1], j));
         }
 
     }
@@ -125,7 +141,7 @@ int inverse(int byte) {
     //Inverse function used with AES, the standard irreducible polynomial is
     //x^8 + x^4 + x^3 + x + 1
     int irreducible_poly = 0x11b;
-    return eeaGF(irreducible_poly, byte);
+    return aes_mod(eeaGF(irreducible_poly, byte));
 }
 
 vector<int> stringToBlock(string input_string) {

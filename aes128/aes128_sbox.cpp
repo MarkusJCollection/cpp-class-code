@@ -67,6 +67,10 @@ void inverseByteSub(std::vector<int>& aes_block) {
 	}
 }
 
-void createSbox() {
+int createSbox() {
 	//UNUSED - Inversion function doesn't work, project for future.
+	int b;
+	b = aes_mod(eeaGF(0x11b, 0x01));
+	cout << hex << b;
+	return ( b ^ circularShiftL(b, 1) ^ circularShiftL(b, 2) ^ circularShiftL(b, 3) ^ circularShiftL(b, 4) ^ 0x63);
 }

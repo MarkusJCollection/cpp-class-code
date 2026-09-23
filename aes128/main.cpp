@@ -2,6 +2,7 @@
 #include "aes128_methods.h"
 #include "aes128_fileoperations.h"
 #include "aes128_userinput.h"
+#include "aes128_sbox.h"
 #include <iostream>
 
 using namespace std;

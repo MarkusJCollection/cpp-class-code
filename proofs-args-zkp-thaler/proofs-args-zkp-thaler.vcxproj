@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d8e3ff59-0848-4731-84e8-c6db28675914}</ProjectGuid>
-    <RootNamespace>aes128</RootNamespace>
+    <ProjectGuid>{952c0f96-afa2-4832-91f4-d1343e104684}</ProjectGuid>
+    <RootNamespace>proofsargszkpthaler</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,28 +139,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="aes128.cpp" />
-    <ClCompile Include="aes128_fileoperations.cpp" />
-    <ClCompile Include="aes128_keyschedule.cpp" />
-    <ClCompile Include="aes128_methods.cpp" />
-    <ClCompile Include="aes128_methods.h" />
-    <ClCompile Include="aes128_mixcolumns.cpp" />
-    <ClCompile Include="aes128_sbox.cpp" />
-    <ClCompile Include="aes128_shiftrows.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="aes128_userinput.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="aes128.h" />
-    <ClInclude Include="aes128_fileoperations.h" />
-    <ClInclude Include="aes128_keyschedule.h" />
-    <ClInclude Include="aes128_mixcolumns.h" />
-    <ClInclude Include="aes128_sbox.h" />
-    <ClInclude Include="aes128_shiftrows.h" />
-    <ClInclude Include="aes128_userinput.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="showcase.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

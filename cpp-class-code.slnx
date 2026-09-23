@@ -5,4 +5,5 @@
   </Configurations>
   <Project Path="aes128/aes128.vcxproj" Id="d8e3ff59-0848-4731-84e8-c6db28675914" />
   <Project Path="eulers-method/eulers-method.vcxproj" Id="fefa9f21-ef74-48ca-8d03-cbbea6ec0290" />
+  <Project Path="proofs-args-zkp-thaler/proofs-args-zkp-thaler.vcxproj" Id="952c0f96-afa2-4832-91f4-d1343e104684" />
 </Solution>

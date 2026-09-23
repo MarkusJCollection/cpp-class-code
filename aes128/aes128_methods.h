@@ -11,15 +11,17 @@ int countBits(int);
 
 int inverse(int);
 
-void circularShift(int&);
+void circularShiftL(int);
 
-int circularShift(int, int);
+int circularShiftL(int, int);
 
 int aes_mod(int);
 
 int polyMultiply(int, int);
 
 int polyMultiply(int, int, int);
+
+int polyDivide(int, int);
 
 vector<int> stringToBlock(string);
 
